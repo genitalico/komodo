@@ -51,7 +51,7 @@ router.post('/sendMessage/:chatId', (req, res, next) => {
         let modelBot = {
             chatId,
             header: body.header,
-            body = body.body
+            body:body.body
         };
 
         telegramBotMessages.SendMessageWithHeader(modelBot);
