@@ -1,0 +1,1 @@
+exports.UrlTelegramBot = process.env.TELEGRAM_URL_BOT;

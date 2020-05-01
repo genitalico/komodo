@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let whTransaction = require('../transactions/gitlab/webHooksTransaction');
+let telegramBotMessages = require('../transactions/telegramBot/messages');
 
 router.post('/webhooks/:chatId', (req, res, next) => {
 
@@ -20,6 +21,8 @@ router.post('/webhooks/:chatId', (req, res, next) => {
             header,
             body
         };
+
+        telegramBotMessages.SendMessageWithHeader(modelBot);
     }
 
     res.contentType('application/json');
