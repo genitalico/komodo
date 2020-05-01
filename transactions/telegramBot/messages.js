@@ -11,12 +11,14 @@ exports.SendMessageWithHeader = (model) => {
         'parse_mode': 'Markdown'
     };
 
-    request.post(settings.UrlTelegramBot + '/sendMessage', {
+    request.post(settings.TelgramBotPath.sendMessages, {
         json
-    }, (error, response, body) => {
+    },
+        (error, response, body) => {
 
-        if (!error && response.statusCode == 200) {
-            return;
+            if (!error && response.statusCode == 200) {
+                return;
+            }
         }
-    });
+    );
 }
