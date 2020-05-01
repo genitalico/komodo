@@ -18,7 +18,7 @@ exports.PushEvent = (model) => {
     return text;
 }
 
-exports.Pipeline = (model) => {
+exports.PipelineEvent = (model) => {
 
     let status = ['*Status:* ', model.object_attributes.status, '\n'].join('');
     let stages = model.object_attributes.stages.join(',');
