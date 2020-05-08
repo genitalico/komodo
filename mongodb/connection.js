@@ -7,7 +7,9 @@ exports.connection = function (app, opts) {
         auth: {
             user: settings.MongoSettings.user,
             password: settings.MongoSettings.password,
-        }
+        },
+        useNewUrlParser: true,
+        useUnifiedTopology: true
     };
     var property = opts.property || "db";
 
