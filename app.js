@@ -10,6 +10,7 @@ var gitlabRouter = require('./routes/gitlab');
 var telegramBotRouter = require('./routes/telegramBot');
 
 var connection = require("./mongodb/connection");
+var authorization = require('./middlewares/authorization');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(connection.connection(app, {}));
+app.use(authorization.authorization(app,{}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
