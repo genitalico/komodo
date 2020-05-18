@@ -25,12 +25,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-if(settings.Flags.useMongo){
+if (settings.Flags.useMongo) {
   var connection = require("./mongodb/connection");
   app.use(connection.connection(app, {}));
 }
 
-app.use(authorization.authorization(app,{}));
+app.use(authorization.authorization(app, {}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -38,12 +38,12 @@ app.use('/gitlab', gitlabRouter);
 app.use('/telegrambot', telegramBotRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

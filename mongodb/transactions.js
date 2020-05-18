@@ -1,12 +1,16 @@
-exports.FindByQuery = async (db, query) =>{
-    try {
 
-        var result = await db.collection(db.collections.collection1).find(query).toArray();
+exports.Db = function (db, mdb) {
 
-        return result;
+    this.FindByQuery = async (query) => {
+        try {
 
-    }
-    catch (ex) {
+            var result = await db.collection(mdb.collection).find(query).toArray();
 
+            return result;
+
+        }
+        catch (ex) {
+
+        }
     }
 }
