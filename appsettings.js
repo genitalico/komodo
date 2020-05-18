@@ -10,3 +10,9 @@ exports.MongoSettings = {
     dbName: process.env.MONGO_DBNAME,
     collection: process.env.MONGO_COLLECTION
 }
+
+exports.FixedTokens = process.env.FIXED_TOKENS;
+
+exports.Flags = {
+    useMongo: (process.env.F_USE_MONGO == 'true')
+}

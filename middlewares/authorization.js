@@ -20,14 +20,14 @@ exports.authorization = function (app, opts) {
             return;
         }
 
-        let query = {
-            "type": 1,
-            "token": hauthorization
-        };
+        let authorization = false;
 
-        let authorization = await findByQuery(req.db, query);
+        if (settings.Flags.useMongo)
+            authorization = await authFromMongodb(hauthorization, req.db);
+        else
+            authorization = authFromString(hauthorization);
 
-        if (authorization.length == 1) {
+        if (authorization) {
             next();
             return;
         }
@@ -39,4 +39,38 @@ exports.authorization = function (app, opts) {
         return;
 
     }
+}
+
+function authFromMongodb(hauthorization, db) {
+
+    return new Promise(async (resolve, reject) => {
+
+        let query = {
+            "type": 1,
+            "token": hauthorization
+        };
+
+        let authorization = await findByQuery(db, query);
+
+        if (authorization.length == 1)
+            resolve(true);
+        else
+            resolve(false);
+
+        return;
+    });
+
+}
+
+function authFromString(hauthorization) {
+
+    let tokens = settings.FixedTokens.split(',');
+
+    for (let i = 0; i < tokens.length; i++) {
+        if (tokens[i] == hauthorization)
+            return true;
+    }
+
+    return false;
+
 }
