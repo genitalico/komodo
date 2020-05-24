@@ -17,8 +17,8 @@ module.exports = {
             "MONGO_PASSWORD": "",
             "MONGO_DBNAME": "",
             "MONGO_COLLECTION": "",
-            "FIXED_TOKENS": "abc,1abc",
-            "F_USE_MONGO": "true"
+            "FIXED_TOKENS": "abc,xyz",
+            "F_USE_MONGO": "false"
         }
     }]
 }
