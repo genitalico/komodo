@@ -1,5 +1,4 @@
 const settings = require('../appsettings');
-const findByQuery = require('../mongodb/transactions').FindByQuery;
 
 exports.authorization = function (app, opts) {
 
@@ -23,7 +22,7 @@ exports.authorization = function (app, opts) {
         let authorization = false;
 
         if (settings.Flags.useMongo)
-            authorization = await authFromMongodb(hauthorization, req.db);
+            authorization = await authFromMongodb(hauthorization, req.mdb);
         else
             authorization = authFromString(hauthorization);
 
@@ -41,7 +40,7 @@ exports.authorization = function (app, opts) {
     }
 }
 
-function authFromMongodb(hauthorization, db) {
+function authFromMongodb(hauthorization, mdb) {
 
     return new Promise(async (resolve, reject) => {
 
@@ -50,7 +49,7 @@ function authFromMongodb(hauthorization, db) {
             "token": hauthorization
         };
 
-        let authorization = await findByQuery(db, query);
+        let authorization = await mdb.transactions.FindByQuery(query);
 
         if (authorization.length == 1)
             resolve(true);
