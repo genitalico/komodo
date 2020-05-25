@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var gitlabRouter = require('./routes/gitlab');
 var telegramBotRouter = require('./routes/telegramBot');
+var telegramUpdate = require('./routes/telegramUpdate');
 
 var authorization = require('./middlewares/authorization');
 
@@ -36,6 +37,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/gitlab', gitlabRouter);
 app.use('/telegrambot', telegramBotRouter);
+app.use('/telegrambot/' + settings.TGupdate, telegramUpdate);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

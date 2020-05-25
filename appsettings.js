@@ -12,6 +12,7 @@ exports.MongoSettings = {
 }
 
 exports.FixedTokens = process.env.FIXED_TOKENS;
+exports.TGupdate = process.env.TG_UPDATE;
 
 exports.Flags = {
     useMongo: (process.env.F_USE_MONGO == 'true')
