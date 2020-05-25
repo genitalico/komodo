@@ -9,6 +9,13 @@ exports.authorization = function (app, opts) {
             return;
         }
 
+        //update telegram
+        let pathUpdate = "/telegrambot/" + settings.TGupdate;
+        if (req.path == pathUpdate) {
+            next();
+            return;
+        }
+
         let hauthorization = req.headers['authorization'] || req.headers['x-gitlab-token'];
 
         if (hauthorization == undefined) {
